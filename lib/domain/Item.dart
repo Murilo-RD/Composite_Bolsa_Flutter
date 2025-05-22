@@ -1,9 +1,10 @@
 abstract class Item {
+
   late String _nome;
   late double _peso;
+  late String _tamanho;
 
   Item(this._nome);
-
 
   double get peso => _peso;
 

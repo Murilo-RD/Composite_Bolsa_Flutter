@@ -1,6 +1,6 @@
 import 'package:composite_bolsa/domain/Item.dart';
 
-class Estojo extends Item{
-  Estojo(super.nome);
+class Notebook extends Item{
+  Notebook(super.nome);
 
 }
