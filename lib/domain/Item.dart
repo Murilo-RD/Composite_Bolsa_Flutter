@@ -1,16 +1,21 @@
 abstract class Item {
+  static int GRANDE = 1;
+  static int MEDIO = 2;
+  static int PEQUENO = 3;
 
   late String _nome;
-  late double _peso;
-  late String _tamanho;
+  late int _tamanho;
 
-  Item(this._nome);
+  Item(this._nome,this._tamanho);
 
-  double get peso => _peso;
 
-  set peso(double value) {
-    _peso = value;
+  int get tamanho => _tamanho;
+
+  set tamanho(int value) {
+    _tamanho = value;
   }
+
+  double get peso;
 
   String get nome => _nome;
 
