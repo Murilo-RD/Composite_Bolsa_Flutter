@@ -11,12 +11,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ItemMenu {
-  ItemMenu(this.gerTelas);
+  ItemMenu(this._gerTelas);
 
- late GerenciadorDeTelas gerTelas;
+ late GerenciadorDeTelas _gerTelas;
 
   Widget menuItem(Function contrutor, String image) {
-    return Container(
+    return SizedBox(
       height: 500,
       width: 400,
       child: Column(
@@ -56,16 +56,16 @@ class ItemMenu {
     List<Widget> list = [];
     switch (tamanho){
       case 1:
-        list.add(menuItem((){new Mochila("Mochila");},"../../src/images/mochila.jpg"));
+        list.add(menuItem((){_gerTelas.addBolsa(new Mochila("Mochila"));},"../../src/images/mochila.png"));
         list.addAll(getList(tamanho+1));
       case 2:
-        list.add(menuItem((){new Estojo("Estojo");},"../../src/images/estojo.jpg"));
-        list.add(menuItem((){new Caderno("Caderno");},"../../src/images/caderno.jpeg"));
-        list.add(menuItem((){new Notebook("Notebook");},"../../src/images/notebook.png"));
+        list.add(menuItem((){_gerTelas.addBolsa(new Estojo("Estojo"));},"../../src/images/estojo.png"));
+        list.add(menuItem((){_gerTelas.addItem(new Caderno("Caderno"));},"../../src/images/caderno.png"));
+        list.add(menuItem((){_gerTelas.addItem(new Notebook("Notebook"));},"../../src/images/notebook.png"));
         list.addAll(getList(tamanho+1));
       case 3:
-        list.add(menuItem((){new Lapis("Lapis");},"../../src/images/lapis.jpg"));
-        list.add(menuItem((){new Borracha("Borracha");},"../../src/images/borracha.png"));
+        list.add(menuItem((){_gerTelas.addItem(new Lapis("Lapis"));},"../../src/images/lapis.png"));
+        list.add(menuItem((){_gerTelas.addItem(new Borracha("Borracha"));},"../../src/images/borracha.png"));
         list.addAll(getList(tamanho+1));
       default:
         return list;

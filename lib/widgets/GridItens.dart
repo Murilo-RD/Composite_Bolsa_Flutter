@@ -1,14 +1,31 @@
-
-
 import 'package:Composite_bolsa/domain/Bolsa.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class GridItens extends StatelessWidget {
-  GridItens(this._itemPai, this._list, {super.key});
+import '../GerenciadorDeTelas/GerenciadorDeTelas.dart';
 
+class GridItens extends StatefulWidget {
+  const GridItens(this._gerTelas,this._itemPai, this._list, {super.key});
+
+  final GerenciadorDeTelas _gerTelas;
   final List<Widget> _list;
   final Bolsa _itemPai;
+
+  Bolsa get itemPai => _itemPai;
+
+  @override
+  State<GridItens> createState() => _GridItensState();
+}
+
+class _GridItensState extends State<GridItens> {
+
+  void initState() {
+    super.initState();
+
+    widget._gerTelas.addListener(() {
+      setState(() {});
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +40,7 @@ class GridItens extends StatelessWidget {
               color: Colors.blue,
             ),
             Text(
-              _itemPai.nome + " - ${_itemPai.itens.length}",
+              widget._itemPai.nome + " - ${widget._itemPai.itens.length}",
               style: TextStyle(
                 color: Colors.blue,
                 fontSize: 35,
@@ -40,8 +57,8 @@ class GridItens extends StatelessWidget {
               crossAxisSpacing: 5,
               mainAxisSpacing: 5,
             ),
-            itemCount: _list.length,
-            itemBuilder: (context, index) => _list.elementAt(index),
+            itemCount: widget._list.length,
+            itemBuilder: (context, index) => widget._list.elementAt(index),
           ),
         ),
       ],

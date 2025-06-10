@@ -13,9 +13,17 @@ class TelaPrincipal extends StatefulWidget {
 
   @override
   State<TelaPrincipal> createState() => _TelaPrincipalState();
+
 }
 
 class _TelaPrincipalState extends State<TelaPrincipal> {
+
+  void initState() {
+    super.initState();
+    widget.gerTelas.addListener(() {
+      setState(() {});
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +31,11 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
+            leading: widget.gerTelas.returnButton(context),
+            centerTitle: true,
             title: Row(
               mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Icon(Icons.backpack,size: 40,color: Colors.white,),
                 Text(
@@ -37,12 +48,11 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
                 ),
               ],
             ),
-            backgroundColor: Color(0xFF4A90E2),
+            backgroundColor: Colors.blue,
         ),
         body: widget.gerTelas.getGrid()
       ),
     );
-    ;
   }
 
 
