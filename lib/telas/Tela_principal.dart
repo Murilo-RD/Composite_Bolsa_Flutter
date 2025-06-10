@@ -1,4 +1,6 @@
+import 'package:composite_bolsa/domain/Mochila.dart';
 import 'package:composite_bolsa/widgets/GridItens.dart';
+import 'package:composite_bolsa/widgets/ItemMenu.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -10,6 +12,8 @@ class TelaPrincipal extends StatefulWidget {
 }
 
 class _TelaPrincipalState extends State<TelaPrincipal> {
+  ItemMenu im = new ItemMenu(new Mochila("Mochila"));
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -29,7 +33,7 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
         body: Column(
           children: [
             Expanded(
-              child: GridItens(),
+              child: GridItens(im.getList()),
             ),
           ],
         ),

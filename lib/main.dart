@@ -1,4 +1,4 @@
-import 'package:composite_bolsa/telas/tela_principal.dart';
+import 'package:composite_bolsa/telas/Tela_principal.dart';
 import 'package:flutter/material.dart';
 
 void main() {
