@@ -1,43 +1,76 @@
-import 'package:composite_bolsa/domain/Bolsa.dart';
-import 'package:composite_bolsa/domain/Item.dart';
-import 'package:composite_bolsa/domain/Mochila.dart';
+
+import 'package:Composite_bolsa/GerenciadorDeTelas/GerenciadorDeTelas.dart';
+import 'package:Composite_bolsa/domain/Borracha.dart';
+import 'package:Composite_bolsa/domain/Caderno.dart';
+import 'package:Composite_bolsa/domain/Estojo.dart';
+import 'package:Composite_bolsa/domain/Lapis.dart';
+import 'package:Composite_bolsa/domain/Mochila.dart';
+import 'package:Composite_bolsa/domain/Notebook.dart';
+import 'package:Composite_bolsa/GerenciadorDeTelas/GerenciadorDeTelas.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ItemMenu {
-  Bolsa _itemPai;
+  ItemMenu(this.gerTelas);
 
-  ItemMenu(this._itemPai);
+ late GerenciadorDeTelas gerTelas;
 
   Widget menuItem(Function contrutor, String image) {
     return Container(
-      width: 500,
       height: 500,
+      width: 400,
       child: Column(
         children: [
-          Image.network(
-            image,
-            width: 300,
-            height: 300,
-          ),
-          ElevatedButton(
-            onPressed: (){contrutor();},
-            child: Text(
-              "Adicionar Item",
-              style: TextStyle(color: Colors.white),
+          Image.network(image,height: 400,width: 400,),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30),
+            child: ElevatedButton(
+              onPressed: (){contrutor();},
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue,
+                shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 5),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [ Icon(Icons.add_box_outlined,color: Colors.white,size: 40,),
+                    SizedBox(width: 10,),
+                    Text(
+                      "Adicionar Item",
+                      style: TextStyle(color: Colors.white,fontSize: 30),
+                    ),
+                  ],
+                ),
+              ),
             ),
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
           )
         ],
       ),
     );
   }
 
-  List<Widget> getList() {
+  List<Widget> getList(int tamanho) {
     List<Widget> list = [];
-    list.add(menuItem(()=> new Mochila("Mochila"),"../../src/images/download.jpeg"));
-    list.add(menuItem(()=> new Mochila("Mochila"),'https://vulcabras.vtexassets.com/arquivos/ids/288622-800-800?v=638472322022330000&width=800&height=800&aspect=true'));
-    list.add(menuItem(()=> new Mochila("Mochila"),'https://vulcabras.vtexassets.com/arquivos/ids/288622-800-800?v=638472322022330000&width=800&height=800&aspect=true'));
+    switch (tamanho){
+      case 1:
+        list.add(menuItem((){new Mochila("Mochila");},"../../src/images/mochila.jpg"));
+        list.addAll(getList(tamanho+1));
+      case 2:
+        list.add(menuItem((){new Estojo("Estojo");},"../../src/images/estojo.jpg"));
+        list.add(menuItem((){new Caderno("Caderno");},"../../src/images/caderno.jpeg"));
+        list.add(menuItem((){new Notebook("Notebook");},"../../src/images/notebook.png"));
+        list.addAll(getList(tamanho+1));
+      case 3:
+        list.add(menuItem((){new Lapis("Lapis");},"../../src/images/lapis.jpg"));
+        list.add(menuItem((){new Borracha("Borracha");},"../../src/images/borracha.png"));
+        list.addAll(getList(tamanho+1));
+      default:
+        return list;
+
+    }
     return list;
   }
 }

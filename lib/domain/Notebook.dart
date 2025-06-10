@@ -1,4 +1,6 @@
-import 'package:composite_bolsa/domain/Item.dart';
+
+
+import 'package:Composite_bolsa/domain/Item.dart';
 
 class Notebook extends Item{
   Notebook(String nome) : super(nome, Item.MEDIO);

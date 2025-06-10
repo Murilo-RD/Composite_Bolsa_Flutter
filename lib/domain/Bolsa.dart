@@ -1,23 +1,30 @@
 
-import 'package:composite_bolsa/domain/Item.dart';
+
+
+import 'Item.dart';
 
 abstract class Bolsa extends Item{
-  late List<Item> _items;
+  late List<Item> _itens;
 
-  Bolsa(super.nome, super.tamanho);
+  Bolsa(super.nome, super.tamanho){
+    _itens = [];
+
+  }
 
   void adicionarItem(Item novoItem){
-    this._items.add(novoItem);
+    this._itens.add(novoItem);
   }
 
   void removerItem(Item item){
-    this._items.remove(item);
+    this._itens.remove(item);
   }
 
 
+  List<Item> get itens => _itens;
+
   double calcularPeso(){
     double peso = 0;
-    _items.forEach((item){
+    _itens.forEach((item){
       peso = peso + item.peso;
     });
     return peso;

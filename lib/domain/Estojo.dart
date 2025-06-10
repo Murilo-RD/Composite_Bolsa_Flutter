@@ -1,5 +1,8 @@
-import 'package:composite_bolsa/domain/Bolsa.dart';
-import 'package:composite_bolsa/domain/Item.dart';
+
+
+
+import 'Bolsa.dart';
+import 'Item.dart';
 
 class Estojo extends Bolsa{
   Estojo(String nome) : super(nome, Item.MEDIO);
