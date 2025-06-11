@@ -73,11 +73,11 @@ class GerenciadorDeTelas extends ChangeNotifier {
       list.add(Itemlist(bolsa, bolsa, onDelete));
     }
     bolsa.itens.forEach((item) {
-      list.add(Padding(padding: EdgeInsets.only(left: 20),child:Itemlist(item, bolsa, onDelete)));
+      list.add(Padding(padding: EdgeInsets.only(left: 40),child:Itemlist(item, bolsa, onDelete)));
       if (item is Bolsa) {
         list.add(
           Padding(
-            padding: EdgeInsets.only(left: 20),
+            padding: EdgeInsets.only(left: 40),
             child: ListView(
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
